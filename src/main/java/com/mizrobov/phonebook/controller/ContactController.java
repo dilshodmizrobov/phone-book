@@ -36,7 +36,10 @@ public class ContactController {
         headers.add("X-Contact-Total",Long.toString(contacts.stream().count()));
         return new ResponseEntity<>(contacts, headers, HttpStatus.OK);
     }
-
+    @GetMapping(value = "/search",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Person> searchFullText(@RequestParam String keyWord){
+        return contactService.searchFullText(keyWord);
+    }
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Person getContact(@PathVariable Long id){
         return contactService.findOne(id);
@@ -72,7 +75,7 @@ public class ContactController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<HttpStatus> deleteContact(@PathVariable("id") Long id){
         contactService.delete(id);
-        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }
 
     @GetMapping(value = "/{personId}/phones")
@@ -117,13 +120,9 @@ public class ContactController {
     @DeleteMapping(value = "/{personId}/phones/{phoneId}")
     public ResponseEntity<HttpStatus> deleteContactPhone(@PathVariable("personId") Long personId,@PathVariable("phoneId") Long phoneId){
         contactService.deletePhone(personId,phoneId);
-        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/search")
-    public List<Person> searchFullText(@RequestParam(required = true) String searchQuery){
-        return contactService.searchFullText(searchQuery);
-    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)

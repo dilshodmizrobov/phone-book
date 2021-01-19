@@ -137,7 +137,7 @@ class PhoneBookApplicationTests {
 	public void testDeleteContact()throws Exception{
 
 		mockMvc.perform(delete("/contacts/{id}", 9) )
-				.andExpect(status().isAccepted())
+				.andExpect(status().isOk())
 				.andDo(document("{methodName}",
 						preprocessRequest(prettyPrint()),
 						preprocessResponse(prettyPrint())));
