@@ -1,0 +1,51 @@
+= Phone Book Spring REST Docs
+
+This is an example output for a service running at http://localhost:8080:
+
+== Get all contacts
+
+.request
+include::{snippets}/testGetContacts/http-request.adoc[]
+
+.response
+include::{snippets}/testGetContacts/http-response.adoc[]
+
+== Get contact by identify
+
+.request
+include::{snippets}/testGetContact/http-request.adoc[]
+
+.response
+include::{snippets}/testGetContact/http-response.adoc[]
+
+== Create new Contact
+
+.request
+include::{snippets}/testSaveContact/http-request.adoc[]
+
+.response
+include::{snippets}/testSaveContact/http-response.adoc[]
+
+== Update contact
+
+.request
+include::{snippets}/testUpdateContact/http-request.adoc[]
+
+.response
+include::{snippets}/testUpdateContact/http-response.adoc[]
+
+== Delete contact
+
+.request
+include::{snippets}/testDeleteContact/http-request.adoc[]
+
+.response
+include::{snippets}/testDeleteContact/http-response.adoc[]
+
+== Search by name or number phone
+
+.request
+include::{snippets}/testSearchContact/http-request.adoc[]
+
+.response
+include::{snippets}/testSearchContact/http-response.adoc[]

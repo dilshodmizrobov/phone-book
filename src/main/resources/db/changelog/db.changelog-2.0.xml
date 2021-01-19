@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="dilshod"  id="changelog-2.0.1">
+        <createTable  tableName="phones">
+            <column  name="id"  type="bigint(20)" autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="person_id"  type="bigint(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="number"  type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="type"  type="varchar(20)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="phones" baseColumnNames="person_id"
+                                 constraintName="person_phone_product_id_fk" referencedTableName="persons"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+    <changeSet id="changelog-2.0.2" author="dilshod">
+        <insert tableName="phones">
+            <column name="number" value="+992 915400323"/>
+            <column name="type" value="mobile"/>
+            <column name="person_id" valueComputed="(select p.id from persons p where p.email='dilshod@gmail.com')"/>
+        </insert>
+        <insert tableName="phones">
+            <column name="number" value="+992 2213443"/>
+            <column name="type" value="home"/>
+            <column name="person_id" valueComputed="(select p.id from persons p where p.email='dilshod@gmail.com')"/>
+        </insert>
+        <insert tableName="phones">
+            <column name="number" value="+7 9533664341"/>
+            <column name="type" value="mobile"/>
+            <column name="person_id" valueComputed="(select p.id from persons p where p.email='dilovar@gmail.com')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

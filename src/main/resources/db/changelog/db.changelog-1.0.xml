@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="dilshod"  id="changelog-1.0">
+        <createTable  tableName="persons">
+            <column  name="id"  type="bigint(20)" autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="first_name"  type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="last_name"  type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="email"  type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+            <column  name="job_title"  type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+            <column  name="company"  type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createIndex tableName="persons" indexName="idx_first_name">
+            <column  name="first_name"/>
+        </createIndex>
+        <createIndex tableName="persons" indexName="idx_last_name">
+            <column  name="last_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="changelog-1.0_2" author="Dilshod">
+        <insert tableName="persons">
+            <column name="first_name" value="Dilshod"/>
+            <column name="last_name" value="Mizrobov"/>
+            <column name="email" value="dilshod@gmail.com"/>
+            <column name="job_title" value="Java Developer"/>
+            <column name="company" value="anor.tj"/>
+        </insert>
+        <insert tableName="persons">
+            <column name="first_name" value="Dilovar"/>
+            <column name="last_name" value="Mizrobov"/>
+            <column name="email" value="dilovar@gmail.com"/>
+            <column name="job_title" value="student"/>
+            <column name="company" value="IFMO"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
